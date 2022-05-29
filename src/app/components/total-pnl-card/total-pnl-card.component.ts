@@ -53,12 +53,10 @@ export class TotalPnlCardComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.qr$.pipe(
       filter(Boolean),
-      tap(() => this.setQr()),
-      distinctUntilChanged(),
       map(qr => `assets/img/${qr}.png`),
       takeUntil(this.destroy$),
     ).subscribe(qr => {
-      this.qrImg.src = qr;
+      this.qrImg.src === qr ? this.setQr() : this.qrImg.src = qr;
     })
   }
 

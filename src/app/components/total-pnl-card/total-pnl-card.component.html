@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="form">
+    <form [formGroup]="form">
+      <mat-form-field appearance="fill">
+        <mat-label>Start date</mat-label>
+        <input matInput [formControlName]="KEYS.StartDate">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>End date</mat-label>
+        <input matInput [formControlName]="KEYS.EndDate">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Value</mat-label>
+        <input matInput [formControlName]="KEYS.Value">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Client</mat-label>
+        <mat-select [formControlName]="KEYS.Referral">
+          <mat-option *ngFor="let client of CLIENTS" [value]="client.id">
+            {{client.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="card" #card>
+    <canvas #canvas></canvas>
+  </div>
+</div>

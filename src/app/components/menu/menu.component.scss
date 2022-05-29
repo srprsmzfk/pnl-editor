@@ -1,0 +1,13 @@
+:host {
+  .container {
+    padding: 20px;
+    display: flex;
+  }
+
+  mat-card {
+    max-width: 200px;
+    cursor: pointer;
+
+    img {}
+  }
+}

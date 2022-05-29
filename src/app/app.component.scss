@@ -1,0 +1,21 @@
+.pointer {
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  height: calc(100vh - 64px);
+  overflow-y: auto;
+}
+
+mat-toolbar {
+  background-color: #262930;
+  color: white;
+
+  img {
+    height: 60%;
+    margin-right: 10px;
+  }
+}

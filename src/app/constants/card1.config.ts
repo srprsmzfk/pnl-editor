@@ -35,5 +35,9 @@ export const CARD1_CONFIG: Record<Card1KeyEnum, TextInterface> = {
     size: '70px',
     color: ColorEnum.White,
     weight: 400
+  },
+  [Card1KeyEnum.Qr]: {
+    x: 66,
+    y: 781,
   }
 }

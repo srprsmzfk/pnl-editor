@@ -1,10 +1,11 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { BehaviorSubject, debounceTime, distinctUntilChanged, filter, map, Subject, takeUntil, tap } from 'rxjs';
+import { filter, map, Subject, takeUntil, tap } from 'rxjs';
 import { CanvasService } from '../../services/canvas.service';
 import { Card1KeyEnum } from '../../enums/card1-key.enum';
 import { CARD1_CONFIG } from '../../constants/card1.config';
 import { CLIENTS } from '../../constants/clients.const';
+import { BackgroundEnum } from '../../enums/background.enum';
 
 @Component({
   selector: 'app-total-pnl-card',
@@ -12,8 +13,7 @@ import { CLIENTS } from '../../constants/clients.const';
   styleUrls: ['./total-pnl-card.component.scss']
 })
 export class TotalPnlCardComponent implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild('card') card: HTMLDivElement;
-  @ViewChild('canvas') canvasRef: ElementRef;
+  @ViewChild('mirror') imgRef: ElementRef;
   canvas: HTMLCanvasElement;
   form = new FormGroup({
     [Card1KeyEnum.StartDate]: new FormControl(''),
@@ -22,11 +22,13 @@ export class TotalPnlCardComponent implements OnInit, AfterViewInit, OnDestroy {
     [Card1KeyEnum.Referral]: new FormControl(''),
   })
 
-  img: any = new Image();
+  img: HTMLImageElement;
+  imgSrc: any = BackgroundEnum.Card1;
+  canvasBackground: any;
   KEYS = Card1KeyEnum;
   CLIENTS = CLIENTS;
 
-  private qr$ = new BehaviorSubject<string>(null);
+  private qr$ = new Subject<string>();
   private qrImg: any = new Image();
   private destroy$ = new Subject<void>()
 
@@ -38,13 +40,14 @@ export class TotalPnlCardComponent implements OnInit, AfterViewInit, OnDestroy {
     this.qrImg = new Image()
     this.qrImg.onload = () => {
       this.setQr();
+      this.setImg();
     }
     this.form.valueChanges
       .pipe(
         takeUntil(this.destroy$),
       )
       .subscribe(form => {
-        this.resetImg();
+        this.resetBackground();
         this.canvasService.drawText(`${form[Card1KeyEnum.Value]}%`, CARD1_CONFIG[Card1KeyEnum.Value]);
         this.canvasService.drawText(`${form[Card1KeyEnum.StartDate]} - ${form[Card1KeyEnum.EndDate]}`, CARD1_CONFIG[Card1KeyEnum.StartDate]);
         this.canvasService.drawText(`${form[Card1KeyEnum.Referral]}`, CARD1_CONFIG[Card1KeyEnum.Referral]);
@@ -52,6 +55,9 @@ export class TotalPnlCardComponent implements OnInit, AfterViewInit, OnDestroy {
       });
 
     this.qr$.pipe(
+      tap(qr => {
+        if (!qr) { this.setImg() }
+      }),
       filter(Boolean),
       map(qr => `assets/img/${qr}.png`),
       takeUntil(this.destroy$),
@@ -61,31 +67,37 @@ export class TotalPnlCardComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    this.canvas = this.canvasRef.nativeElement;
+    this.img = this.imgRef.nativeElement;
+    this.canvas = document.createElement('canvas');
     this.canvasService.initContext(this.canvas.getContext('2d'));
-    this.setImg();
+    this.setBackground();
   }
 
   ngOnDestroy(): void {
     this.destroy$.complete();
   }
 
-  private setImg(): void {
-    this.img = new Image();
-    this.img.src = `assets/img/card1Background1.png`;
-    this.img.onload = () => {
-      this.canvas.width = this.img.width;
-      this.canvas.height = this.img.height;
-      this.resetImg();
+  private setBackground(): void {
+    this.canvasBackground = new Image();
+    this.canvasBackground.src = BackgroundEnum.Card1;
+    this.canvasBackground.onload = () => {
+      this.canvas.width = this.canvasBackground.width;
+      this.canvas.height = this.canvasBackground.height;
+      this.resetBackground();
     }
   }
 
-  private resetImg(): void {
-    this.canvasService.drawImage(this.img, 0, 0);
+  private resetBackground(): void {
+    this.canvasService.drawImage(this.canvasBackground, 0, 0);
   }
 
   private setQr(): void {
-    this.canvasService.drawImage(this.qrImg, 66, 781, 160, 160);
+    this.canvasService
+      .drawImage(this.qrImg, CARD1_CONFIG[Card1KeyEnum.Qr].x, CARD1_CONFIG[Card1KeyEnum.Qr].y, 160, 160);
+    this.setImg();
   }
 
+  private setImg(): void {
+    this.imgSrc = this.canvas.toDataURL('image/png');
+  }
 }

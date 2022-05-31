@@ -22,6 +22,16 @@ $my-app-theme: mat.define-light-theme(
 
 @include mat.all-component-themes($my-app-theme);
 
+@font-face {
+  font-family: 'BinanceMedium' ;
+  src: url('/assets/fonts/BinanceMedium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'BinanceRegular' ;
+  src: url('assets/fonts/BinanceRegular.woff2') format('woff2');
+}
+
 html,
 body {
   height: 100%;
@@ -31,13 +41,32 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-@font-face {
-  font-family: 'BinanceMedium' ;
-  src: url('/assets/fonts/BinanceMedium.woff2') format('woff2');
+.img-option {
+  height: auto !important;
+  padding: 16px !important;
+
+  .mat-option-text {
+    line-height: 0;
+  }
+  img {
+    width: 100%;
+  }
+  .label {
+    display: none;
+  }
 }
 
-@font-face {
-  font-family: 'BinanceRegular' ;
-  src: url('assets/fonts/BinanceRegular.woff2') format('woff2');
+mat-radio-group {
+  .mat-radio-outer-circle {
+    border-color: #f0b90b !important;
+  }
+
+  .mat-radio-inner-circle {
+    background-color: #f0b90b !important;
+  }
+
+  .mat-ripple-element {
+    background-color: #f0b90b !important;
+  }
 }
 

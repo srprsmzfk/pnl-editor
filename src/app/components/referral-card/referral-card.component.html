@@ -1,6 +1,50 @@
 <div class="container">
-  <div class="form"></div>
-  <div class="card" #card>
-    <canvas #canvas></canvas>
+  <div class="form">
+    <form [formGroup]="form">
+      <mat-form-field appearance="fill">
+        <mat-label>Background</mat-label>
+        <mat-select [formControlName]="KEYS.Background">
+          <mat-option class="img-option" *ngFor="let bg of backgrounds" [value]="bg.value">
+            <img [src]="bg.value">
+            <span class="label">{{bg.label}}</span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Factor</mat-label>
+        <input matInput [formControlName]="KEYS.Factor">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Coin</mat-label>
+        <input matInput [formControlName]="KEYS.Coin">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Value</mat-label>
+        <input matInput [formControlName]="KEYS.Value">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Entry price</mat-label>
+        <input matInput [formControlName]="KEYS.EntryPrice">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Last price</mat-label>
+        <input matInput [formControlName]="KEYS.LastPrice">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Client</mat-label>
+        <mat-select [formControlName]="KEYS.Referral">
+          <mat-option *ngFor="let client of CLIENTS" [value]="client.id">
+            {{client.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-radio-group  class="mat-form-field-wrapper" aria-label="Select an option" [formControlName]="KEYS.Sell">
+        <mat-radio-button [value]="SELL.Short">Short</mat-radio-button>
+        <mat-radio-button [value]="SELL.Long">Long</mat-radio-button>
+      </mat-radio-group>
+    </form>
+  </div>
+  <div class="card">
+    <img #mirror class="mirror" [src]="imgSrc"/>
   </div>
 </div>

@@ -15,13 +15,15 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
+import { ReferralCardEnComponent } from './components/referral-card-en/referral-card-en.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     ReferralCardComponent,
-    TotalPnlCardComponent
+    TotalPnlCardComponent,
+    ReferralCardEnComponent
   ],
   imports: [
     BrowserModule,

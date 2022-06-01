@@ -3,47 +3,43 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { BackgroundEnum } from '../../enums/background.enum';
 import { filter, map, Subject, takeUntil, tap } from 'rxjs';
 import { CanvasService } from '../../services/canvas.service';
-import { Card2KeyEnum } from '../../enums/card2-key.enum';
+import { Card3KeyEnum } from '../../enums/card3-key.enum';
 import { CLIENTS } from '../../constants/clients.const';
-import { CARD2_CONFIG } from '../../constants/card2.config';
+import { CARD3_CONFIG } from '../../constants/card3.config';
 import { ColorEnum } from '../../enums/color.enum';
 import { SellEnum } from '../../enums/sell.enum';
 
 @Component({
-  selector: 'app-referral-card',
-  templateUrl: './referral-card.component.html',
-  styleUrls: ['./referral-card.component.scss']
+  selector: 'app-referral-card-en',
+  templateUrl: './referral-card-en.component.html',
+  styleUrls: ['./referral-card-en.component.scss']
 })
-export class ReferralCardComponent implements OnInit, AfterViewInit, OnDestroy{
+export class ReferralCardEnComponent implements OnInit, AfterViewInit, OnDestroy{
   @ViewChild('mirror') imgRef: ElementRef;
   canvas: HTMLCanvasElement;
   form = new FormGroup({
-    [Card2KeyEnum.Sell]: new FormControl(SellEnum.Short),
-    [Card2KeyEnum.Factor]: new FormControl(''),
-    [Card2KeyEnum.Coin]: new FormControl(''),
-    [Card2KeyEnum.Value]: new FormControl(''),
-    [Card2KeyEnum.EntryPrice]: new FormControl(''),
-    [Card2KeyEnum.LastPrice]: new FormControl(''),
-    [Card2KeyEnum.Referral]: new FormControl(''),
-    [Card2KeyEnum.Background]: new FormControl(BackgroundEnum.Card2Background1),
+    [Card3KeyEnum.Sell]: new FormControl(SellEnum.ShortEn),
+    [Card3KeyEnum.Factor]: new FormControl(''),
+    [Card3KeyEnum.Coin]: new FormControl(''),
+    [Card3KeyEnum.Value]: new FormControl(''),
+    [Card3KeyEnum.EntryPrice]: new FormControl(''),
+    [Card3KeyEnum.LastPrice]: new FormControl(''),
+    [Card3KeyEnum.Referral]: new FormControl(''),
+    [Card3KeyEnum.Background]: new FormControl(BackgroundEnum.Card3Background1),
   })
 
-  imgSrc: any = BackgroundEnum.Card2Background1;
-  KEYS = Card2KeyEnum;
+  imgSrc: any = BackgroundEnum.Card3Background1;
+  KEYS = Card3KeyEnum;
   CLIENTS = CLIENTS;
   SELL = SellEnum;
   backgrounds = [
     {
       label: 'Background 1',
-      value: BackgroundEnum.Card2Background1,
+      value: BackgroundEnum.Card3Background1,
     },
     {
       label: 'Background 2',
-      value: BackgroundEnum.Card2Background2,
-    },
-    {
-      label: 'Background 3',
-      value: BackgroundEnum.Card2Background3,
+      value: BackgroundEnum.Card3Background2,
     },
   ]
 
@@ -72,11 +68,11 @@ export class ReferralCardComponent implements OnInit, AfterViewInit, OnDestroy{
         takeUntil(this.destroy$),
       )
       .subscribe(form => {
-        if (form[Card2KeyEnum.Background] === this.canvasBackgroundImg.src) {
+        if (form[Card3KeyEnum.Background] === this.canvasBackgroundImg.src) {
           this.resetBackground();
           this.drawForm();
         } else {
-          this.canvasBackgroundImg.src = form[Card2KeyEnum.Background];
+          this.canvasBackgroundImg.src = form[Card3KeyEnum.Background];
         }
       });
 
@@ -107,7 +103,7 @@ export class ReferralCardComponent implements OnInit, AfterViewInit, OnDestroy{
 
   private setQr(): void {
     this.canvasService
-      .drawImage(this.qrImg, CARD2_CONFIG[Card2KeyEnum.Qr].x, CARD2_CONFIG[Card2KeyEnum.Qr].y, 95, 95);
+      .drawImage(this.qrImg, CARD3_CONFIG[Card3KeyEnum.Qr].x, CARD3_CONFIG[Card3KeyEnum.Qr].y, 95, 95);
     this.setImg();
   }
 
@@ -118,14 +114,14 @@ export class ReferralCardComponent implements OnInit, AfterViewInit, OnDestroy{
   private drawForm(): void {
     let form = this.form.value;
     this.canvasService
-      .drawLine(form[Card2KeyEnum.Sell], `${form[Card2KeyEnum.Factor]}x`, `${form[Card2KeyEnum.Coin].toUpperCase()}  Бессрочный`);
-    this.canvasService.drawText(`${form[Card2KeyEnum.Value]}%`, {
-      ...CARD2_CONFIG[Card2KeyEnum.Value],
-      color: form[Card2KeyEnum.Value].replace(',', '.') >= 0 ? ColorEnum.Green : ColorEnum.Red,
+      .drawLineEn(form[Card3KeyEnum.Sell], `${form[Card3KeyEnum.Factor]}x`, `${form[Card3KeyEnum.Coin].toUpperCase()}  Perpetual`);
+    this.canvasService.drawText(`${form[Card3KeyEnum.Value]}%`, {
+      ...CARD3_CONFIG[Card3KeyEnum.Value],
+      color: form[Card3KeyEnum.Value].replace(',', '.') >= 0 ? ColorEnum.Green : ColorEnum.Red,
     });
-    this.canvasService.drawText(form[Card2KeyEnum.EntryPrice], CARD2_CONFIG[Card2KeyEnum.EntryPrice]);
-    this.canvasService.drawText(form[Card2KeyEnum.LastPrice], CARD2_CONFIG[Card2KeyEnum.LastPrice]);
-    this.canvasService.drawText(form[Card2KeyEnum.Referral], CARD2_CONFIG[Card2KeyEnum.Referral]);
-    this.qr$.next(form[Card2KeyEnum.Referral]);
+    this.canvasService.drawText(form[Card3KeyEnum.EntryPrice], CARD3_CONFIG[Card3KeyEnum.EntryPrice]);
+    this.canvasService.drawText(form[Card3KeyEnum.LastPrice], CARD3_CONFIG[Card3KeyEnum.LastPrice]);
+    this.canvasService.drawText(form[Card3KeyEnum.Referral], CARD3_CONFIG[Card3KeyEnum.Referral]);
+    this.qr$.next(form[Card3KeyEnum.Referral]);
   }
 }

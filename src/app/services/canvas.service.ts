@@ -4,6 +4,8 @@ import { SellEnum } from '../enums/sell.enum';
 import { CARD2_CONFIG } from '../constants/card2.config';
 import { Card2KeyEnum } from '../enums/card2-key.enum';
 import { ColorEnum } from '../enums/color.enum';
+import { CARD3_CONFIG } from '../constants/card3.config';
+import { Card3KeyEnum } from '../enums/card3-key.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +53,24 @@ export class CanvasService {
     this.drawRect(caret.x, caret.y - 28, 1, 32, ColorEnum.LightGrey);
     caret.x += space + 1;
     this.drawText(coin, {...CARD2_CONFIG[Card2KeyEnum.Coin], x: caret.x});
+  }
+
+  drawLineEn(sell: SellEnum, factor: string, coin: string ): void {
+    let caret = {
+      x: CARD3_CONFIG[Card3KeyEnum.Sell].x,
+      y: CARD3_CONFIG[Card3KeyEnum.Sell].y
+    }
+    let space = 30;
+
+    this.drawText(sell, {...CARD3_CONFIG[Card3KeyEnum.Sell], color: sell === SellEnum.ShortEn ? ColorEnum.Red : ColorEnum.Green});
+    caret.x += this.measureText(sell) + space;
+    this.drawRect(caret.x, caret.y - 28, 2, 32, ColorEnum.LightGrey);
+    caret.x += space + 2;
+    this.drawText(factor, {...CARD3_CONFIG[Card3KeyEnum.Factor], x: caret.x});
+    caret.x += this.measureText(factor) + space;
+    this.drawRect(caret.x, caret.y - 28, 1, 32, ColorEnum.LightGrey);
+    caret.x += space + 1;
+    this.drawText(coin, {...CARD3_CONFIG[Card3KeyEnum.Coin], x: caret.x});
   }
 
   private measureText(text): number {

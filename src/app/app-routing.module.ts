@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MenuComponent } from './components/menu/menu.component';
 import { TotalPnlCardComponent } from './components/total-pnl-card/total-pnl-card.component';
 import { ReferralCardComponent } from './components/referral-card/referral-card.component';
+import { ReferralCardEnComponent } from './components/referral-card-en/referral-card-en.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'card2',
     component: ReferralCardComponent
+  },
+  {
+    path: 'card3',
+    component: ReferralCardEnComponent
   }
 ];
 

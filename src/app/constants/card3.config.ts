@@ -33,7 +33,6 @@ export const CARD3_CONFIG: Record<string, TextInterface> = {
     y: 315,
     font: FontEnum.PlexCondensed,
     size: '95px',
-    color: ColorEnum.Green,
     weight: 400
   },
   [Card3KeyEnum.EntryPrice]: {

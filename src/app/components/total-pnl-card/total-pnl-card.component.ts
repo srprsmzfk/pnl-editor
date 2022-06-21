@@ -48,7 +48,7 @@ export class TotalPnlCardComponent implements OnInit, AfterViewInit, OnDestroy {
       )
       .subscribe(form => {
         this.resetBackground();
-        this.canvasService.drawText(`${form[Card1KeyEnum.Value]}%`, CARD1_CONFIG[Card1KeyEnum.Value]);
+        this.canvasService.drawNumber(`${form[Card1KeyEnum.Value]}%`, CARD1_CONFIG[Card1KeyEnum.Value]);
         this.canvasService.drawText(`${form[Card1KeyEnum.StartDate]} - ${form[Card1KeyEnum.EndDate]}`, CARD1_CONFIG[Card1KeyEnum.StartDate]);
         this.canvasService.drawText(`${form[Card1KeyEnum.Referral]}`, CARD1_CONFIG[Card1KeyEnum.Referral]);
         this.qr$.next(form[Card1KeyEnum.Referral]);
@@ -69,7 +69,7 @@ export class TotalPnlCardComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     this.img = this.imgRef.nativeElement;
     this.canvas = document.createElement('canvas');
-    this.canvasService.initContext(this.canvas.getContext('2d'));
+    this.canvasService.initContext(this.canvas);
     this.setBackground();
   }
 

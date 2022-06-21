@@ -16,6 +16,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReferralCardEnComponent } from './components/referral-card-en/referral-card-en.component';
+import { OpenTradesComponent } from './components/open-trades/open-trades.component';
+import { MatSliderModule } from '@angular/material/slider';
 
 @NgModule({
   declarations: [
@@ -23,22 +25,24 @@ import { ReferralCardEnComponent } from './components/referral-card-en/referral-
     MenuComponent,
     ReferralCardComponent,
     TotalPnlCardComponent,
-    ReferralCardEnComponent
+    ReferralCardEnComponent,
+    OpenTradesComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    RouterModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatSelectModule,
-    MatRadioModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        RouterModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatSelectModule,
+        MatRadioModule,
+        MatSliderModule
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

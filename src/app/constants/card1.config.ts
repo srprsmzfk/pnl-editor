@@ -1,9 +1,8 @@
 import { Card1KeyEnum } from '../enums/card1-key.enum';
-import { TextInterface } from '../interfaces/text.interface';
 import { FontEnum } from '../enums/font.enum';
 import { ColorEnum } from '../enums/color.enum';
 
-export const CARD1_CONFIG: Record<Card1KeyEnum, TextInterface> = {
+export const CARD1_CONFIG = {
   [Card1KeyEnum.Value]: {
     x: 62,
     y: 625,

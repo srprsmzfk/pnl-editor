@@ -6,6 +6,8 @@ import { Card2KeyEnum } from '../enums/card2-key.enum';
 import { ColorEnum } from '../enums/color.enum';
 import { CARD3_CONFIG } from '../constants/card3.config';
 import { Card3KeyEnum } from '../enums/card3-key.enum';
+import { Card4KeyEnum } from '../enums/card4-key.enum';
+import { CARD4_CONFIG } from '../constants/card4.config';
 
 @Injectable({
   providedIn: 'root'
@@ -13,20 +15,41 @@ import { Card3KeyEnum } from '../enums/card3-key.enum';
 export class CanvasService {
   context: CanvasRenderingContext2D;
 
+  private canvas: HTMLCanvasElement
+
   constructor() { }
 
-  initContext(ctx: CanvasRenderingContext2D): void {
-    this.context = ctx;
+  initContext(canvas: HTMLCanvasElement): void {
+    this.canvas = canvas;
+    this.context = canvas.getContext('2d');
   }
 
   drawText(text: string, config: TextInterface): void {
+    config = {...config};
     if (config.font) {
       this.context.font = `${config.weight} ${config.size} ${config.font}`;
     }
     if (config.color) {
       this.context.fillStyle = config.color;
     }
+    if (config.x < 0) {
+      config.x = this.canvas.width + config.x - this.measureText(text);
+    }
+    if (config.y < 0) {
+      config.y = this.canvas.height + config.y - this.measureText(text);
+    }
     this.context.fillText(text, config.x, config.y);
+  }
+
+  drawNumber(number: string, config: TextInterface): void {
+    config = {...config};
+    config.color = +(number
+      .replace(',', '.')
+      .replace('%', '')
+      // .replace('+', '')
+      .trim()) >= 0 ?
+      ColorEnum.Green : ColorEnum.Red
+    this.drawText(number, config);
   }
 
   drawImage(img: CanvasImageSource, x: number, y: number, scaleX?: number, scaleY?: number): void {
@@ -73,14 +96,47 @@ export class CanvasService {
     this.drawText(coin, {...CARD3_CONFIG[Card3KeyEnum.Coin], x: caret.x});
   }
 
+  drawOpenTradesLine(sell: SellEnum, coin: string, type: string, factor: string, risk: number) {
+    this.drawRect(
+      CARD4_CONFIG[Card4KeyEnum.SellBox].x,
+      CARD4_CONFIG[Card4KeyEnum.SellBox].y,
+      42,
+      42,
+      sell === SellEnum.Short ? ColorEnum.Red : ColorEnum.Green);
+    this.drawText(sell === SellEnum.Short ? 'П' : 'K', CARD4_CONFIG[Card4KeyEnum.Sell]);
+    let caret = {
+      x: CARD4_CONFIG[Card4KeyEnum.Coin].x,
+      y: CARD4_CONFIG[Card3KeyEnum.Coin].y
+    }
+    let space = 30;
+
+    this.drawText(coin, CARD4_CONFIG[Card4KeyEnum.Coin]);
+    caret.x += this.measureText(coin) + space;
+    this.drawText(type, {...CARD4_CONFIG[Card4KeyEnum.Type], x: caret.x});
+    caret.x += this.measureText(type) + 10;
+    this.drawText(factor, {...CARD4_CONFIG[Card4KeyEnum.Factor], x: caret.x});
+    caret.x += this.measureText(factor) + space;
+    this.drawRisk(caret.x, CARD4_CONFIG[Card4KeyEnum.Risk].y, risk);
+  }
+
   private measureText(text): number {
     return this.context.measureText(text).width;
   }
 
-  private drawRect(x: number, y: number, w: number, h: number, color: ColorEnum): void {
+  private drawRect(x: number, y: number, w: number, h: number, color: ColorEnum | string): void {
+    console.log(x, y);
     this.context.fillStyle = color
     this.context.fillRect(x, y, w, h);
   }
 
-
+  private drawRisk(x: number, y: number, risk: number) {
+    const color = risk < 0 ? ColorEnum.Red : ColorEnum.Green;
+    risk = Math.abs(risk);
+    for (let i = 1; i < 5; i++) {
+      let fillColor = i <= risk ? color : ColorEnum.LightGreyOpenTrades;
+      this.drawRect(x, y, 5, 28, fillColor);
+      this.drawRect(x, y + 36, 5, 3, fillColor);
+      x += 10;
+    }
+  }
 }

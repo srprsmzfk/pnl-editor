@@ -6,7 +6,6 @@ import { CanvasService } from '../../services/canvas.service';
 import { Card2KeyEnum } from '../../enums/card2-key.enum';
 import { CLIENTS } from '../../constants/clients.const';
 import { CARD2_CONFIG } from '../../constants/card2.config';
-import { ColorEnum } from '../../enums/color.enum';
 import { SellEnum } from '../../enums/sell.enum';
 
 @Component({
@@ -94,7 +93,7 @@ export class ReferralCardComponent implements OnInit, AfterViewInit, OnDestroy{
 
   ngAfterViewInit(): void {
     this.canvas = document.createElement('canvas');
-    this.canvasService.initContext(this.canvas.getContext('2d'));
+    this.canvasService.initContext(this.canvas);
   }
 
   ngOnDestroy(): void {
@@ -119,10 +118,8 @@ export class ReferralCardComponent implements OnInit, AfterViewInit, OnDestroy{
     let form = this.form.value;
     this.canvasService
       .drawLine(form[Card2KeyEnum.Sell], `${form[Card2KeyEnum.Factor]}x`, `${form[Card2KeyEnum.Coin].toUpperCase()}  Бессрочный`);
-    this.canvasService.drawText(`${form[Card2KeyEnum.Value]}%`, {
-      ...CARD2_CONFIG[Card2KeyEnum.Value],
-      color: form[Card2KeyEnum.Value].replace(',', '.') >= 0 ? ColorEnum.Green : ColorEnum.Red,
-    });
+    this.canvasService
+      .drawNumber(`${form[Card2KeyEnum.Value].replace(',', '.').trim() < 0 || form[Card2KeyEnum.Value] === '-' ? '' : '+'}${form[Card2KeyEnum.Value]}%`, CARD2_CONFIG[Card2KeyEnum.Value]);
     this.canvasService.drawText(form[Card2KeyEnum.EntryPrice], CARD2_CONFIG[Card2KeyEnum.EntryPrice]);
     this.canvasService.drawText(form[Card2KeyEnum.LastPrice], CARD2_CONFIG[Card2KeyEnum.LastPrice]);
     this.canvasService.drawText(form[Card2KeyEnum.Referral], CARD2_CONFIG[Card2KeyEnum.Referral]);

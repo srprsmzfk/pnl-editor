@@ -67,3 +67,11 @@ mat-radio-group {
   }
 }
 
+.mat-slider {
+  color: black !important;
+
+  .mat-slider-thumb, .mat-slider-thumb-label, .mat-slider-track-fill {
+    background-color: #f0b90b !important;
+  }
+}
+

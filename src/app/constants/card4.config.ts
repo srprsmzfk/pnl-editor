@@ -19,10 +19,10 @@ export const CARD4_CONFIG: Record<string, TextInterface> = {
   [Card4KeyEnum.Coin]: {
     x: 108,
     y: 57,
-    font: FontEnum.Plex,
+    font: FontEnum.PlexCondensed,
     size: '40px',
     color: ColorEnum.Black,
-    weight: 700
+    weight: 500
   },
   [Card4KeyEnum.Type]: {
     x: 430,
@@ -40,8 +40,71 @@ export const CARD4_CONFIG: Record<string, TextInterface> = {
     color: ColorEnum.LightGreyOpenTrades,
     weight: 400
   },
-  [Card4KeyEnum.Risk]: {
+  [Card4KeyEnum.RiskBox]: {
     x: 795,
     y: 21,
+  },
+  [Card4KeyEnum.Pnl]: {
+    x: 37,
+    y: 203,
+    font: FontEnum.PlexCondensed,
+    size: '55px',
+    color: ColorEnum.Green,
+    weight: 400
+  },
+  [Card4KeyEnum.Roe]: {
+    x: -40,
+    y: 203,
+    font: FontEnum.PlexCondensed,
+    size: '55px',
+    color: ColorEnum.Green,
+    weight: 400
+  },
+  [Card4KeyEnum.Size]: {
+    x: 37,
+    y: 329,
+    font: FontEnum.Plex,
+    size: '35px',
+    color: ColorEnum.Black,
+    weight: 400
+  },
+  [Card4KeyEnum.Margin]: {
+    x: 342,
+    y: 329,
+    font: FontEnum.Plex,
+    size: '35px',
+    color: ColorEnum.Black,
+    weight: 400
+  },
+  [Card4KeyEnum.Risk]: {
+    x: -40,
+    y: 329,
+    font: FontEnum.Plex,
+    size: '35px',
+    weight: 400
+  },
+  [Card4KeyEnum.EntryPrice]: {
+    x: 37,
+    y: 504,
+    font: FontEnum.Plex,
+    size: '35px',
+    color: ColorEnum.Black,
+    weight: 400
+  },
+  [Card4KeyEnum.LastPrice]: {
+    x: 342,
+    y: 504,
+    font: FontEnum.Plex,
+    size: '35px',
+    color: ColorEnum.Black,
+    weight: 400
+  },
+  [Card4KeyEnum.LiquidPrice]: {
+    x: -40,
+    y: 504,
+    font: FontEnum.Plex,
+    color: ColorEnum.Black,
+    size: '35px',
+    weight: 400
   },
 }

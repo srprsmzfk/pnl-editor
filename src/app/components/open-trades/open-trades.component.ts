@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { FormControl, FormGroup } from '@angular/forms';
 import { SellEnum } from '../../enums/sell.enum';
 import { BackgroundEnum } from '../../enums/background.enum';
-import { filter, map, Subject, takeUntil, tap } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { CanvasService } from '../../services/canvas.service';
 import { Card4KeyEnum } from '../../enums/card4-key.enum';
 import { TradeType } from '../../enums/trade-type.enum';
@@ -21,29 +21,24 @@ export class OpenTradesComponent implements OnInit, AfterViewInit {
     [Card4KeyEnum.Coin]: new FormControl(''),
     [Card4KeyEnum.Type]: new FormControl(''),
     [Card4KeyEnum.Factor]: new FormControl(''),
-    [Card4KeyEnum.Risk]: new FormControl(0),
+    [Card4KeyEnum.RiskBox]: new FormControl(0),
+    [Card4KeyEnum.Pnl]: new FormControl(''),
+    [Card4KeyEnum.Roe]: new FormControl(''),
+    [Card4KeyEnum.Size]: new FormControl(''),
+    [Card4KeyEnum.Margin]: new FormControl(''),
+    [Card4KeyEnum.Risk]: new FormControl(''),
+    [Card4KeyEnum.EntryPrice]: new FormControl(''),
+    [Card4KeyEnum.LastPrice]: new FormControl(''),
+    [Card4KeyEnum.LiquidPrice]: new FormControl(''),
   })
 
   imgSrc: any = BackgroundEnum.Card4Background1;
   keys = Card4KeyEnum;
   sell = SellEnum;
   tradeType = TradeType;
-  // backgrounds = [
-  //   {
-  //     label: 'Background 1',
-  //     value: BackgroundEnum.Card2Background1,
-  //   },
-  //   {
-  //     label: 'Background 2',
-  //     value: BackgroundEnum.Card2Background2,
-  //   },
-  //   {
-  //     label: 'Background 3',
-  //     value: BackgroundEnum.Card2Background3,
-  //   },
-  // ]
 
   private canvasBackgroundImg = new Image();
+  private shareIcon = new Image();
   private destroy$ = new Subject<void>()
 
   constructor(
@@ -51,10 +46,10 @@ export class OpenTradesComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit(): void {
+    this.shareIcon.src = 'assets/icons/shareIcon.png';
     this.canvasBackgroundImg.onload = () => {
       this.canvas.width = this.canvasBackgroundImg.width;
       this.canvas.height = this.canvasBackgroundImg.height;
-      console.log(this.canvas.width, this.canvas.height);
       this.resetBackground();
       this.drawForm();
     }
@@ -63,15 +58,9 @@ export class OpenTradesComponent implements OnInit, AfterViewInit {
         takeUntil(this.destroy$),
       )
       .subscribe(form => {
-        // if (form[Card4KeyEnum.Background] === this.canvasBackgroundImg.src) {
         this.resetBackground();
         this.drawForm();
         this.setImg();
-
-
-        // } else {
-        //   this.canvasBackgroundImg.src = form[Card4KeyEnum.Background];
-        // }
       });
   }
 
@@ -100,14 +89,16 @@ export class OpenTradesComponent implements OnInit, AfterViewInit {
       `${form[Card4KeyEnum.Coin].toUpperCase()} Бессрочный`,
       form[Card4KeyEnum.Type] === TradeType.Cross ? 'Кросс' : 'Изолированый',
       `${form[Card4KeyEnum.Factor]}X`,
-      form[Card4KeyEnum.Risk],
+      form[Card4KeyEnum.RiskBox],
     );
-
-
-    // this.canvasService.drawNumber(`${form[Card4KeyEnum.Value]}%`, CARD2_CONFIG[Card4KeyEnum.Value]);
-    // this.canvasService.drawText(form[Card4KeyEnum.EntryPrice], CARD2_CONFIG[Card4KeyEnum.EntryPrice]);
-    // this.canvasService.drawText(form[Card4KeyEnum.LastPrice], CARD2_CONFIG[Card4KeyEnum.LastPrice]);
-    // this.canvasService.drawText(form[Card4KeyEnum.Referral], CARD2_CONFIG[Card4KeyEnum.Referral]);
-    // this.qr$.next(form[Card4KeyEnum.Referral]);
+    this.canvasService.drawImage(this.shareIcon, 904, 22);
+    this.canvasService.drawNumber(form[Card4KeyEnum.Pnl], CARD4_CONFIG[Card4KeyEnum.Pnl]);
+    this.canvasService.drawNumber(`${form[Card4KeyEnum.Roe]} %`, CARD4_CONFIG[Card4KeyEnum.Roe]);
+    this.canvasService.drawText(form[Card4KeyEnum.Size], CARD4_CONFIG[Card4KeyEnum.Size]);
+    this.canvasService.drawText(form[Card4KeyEnum.Margin], CARD4_CONFIG[Card4KeyEnum.Margin]);
+    this.canvasService.drawNumber(`${form[Card4KeyEnum.Risk]} %`, CARD4_CONFIG[Card4KeyEnum.Risk]);
+    this.canvasService.drawText(form[Card4KeyEnum.EntryPrice], CARD4_CONFIG[Card4KeyEnum.EntryPrice]);
+    this.canvasService.drawText(form[Card4KeyEnum.LastPrice], CARD4_CONFIG[Card4KeyEnum.LastPrice]);
+    this.canvasService.drawText(form[Card4KeyEnum.LiquidPrice], CARD4_CONFIG[Card4KeyEnum.LiquidPrice]);
   }
 }

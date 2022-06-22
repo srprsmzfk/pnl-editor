@@ -116,7 +116,7 @@ export class CanvasService {
     caret.x += this.measureText(type) + 10;
     this.drawText(factor, {...CARD4_CONFIG[Card4KeyEnum.Factor], x: caret.x});
     caret.x += this.measureText(factor) + space;
-    this.drawRisk(caret.x, CARD4_CONFIG[Card4KeyEnum.Risk].y, risk);
+    this.drawRisk(caret.x, CARD4_CONFIG[Card4KeyEnum.RiskBox].y, risk);
   }
 
   private measureText(text): number {

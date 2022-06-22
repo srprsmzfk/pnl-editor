@@ -1,59 +1,75 @@
 <div class="container">
   <div class="form">
     <form [formGroup]="form">
-<!--      <mat-form-field appearance="fill">-->
-<!--        <mat-label>Background</mat-label>-->
-<!--        <mat-select [formControlName]="KEYS.Background">-->
-<!--          <mat-option class="img-option" *ngFor="let bg of backgrounds" [value]="bg.value">-->
-<!--            <img [src]="bg.value">-->
-<!--            <span class="label">{{bg.label}}</span>-->
-<!--          </mat-option>-->
-<!--        </mat-select>-->
-<!--      </mat-form-field>-->
-
-      <mat-radio-group  class="mat-form-field-wrapper" aria-label="Select an option" [formControlName]="keys.Sell">
+      <mat-radio-group class="mat-form-field-wrapper" aria-label="Select an option" [formControlName]="keys.Sell">
         <mat-radio-button [value]="sell.Short">Short</mat-radio-button>
         <mat-radio-button [value]="sell.Long">Long</mat-radio-button>
       </mat-radio-group>
-
-      <mat-radio-group  class="mat-form-field-wrapper" aria-label="Select an option" [formControlName]="keys.Type">
-        <mat-radio-button [value]="tradeType.Cross">Cross</mat-radio-button>
-        <mat-radio-button [value]="tradeType.Isolated">Isolated</mat-radio-button>
-      </mat-radio-group>
-<!--      <mat-form-field appearance="fill" >-->
-        <mat-slider
-          #slider
-          class="example-margin"
-          [max]="4"
-          [min]="-4"
-          [step]="1"
-          [formControlName]="keys.Risk"
-          [thumbLabel]="true"
-          aria-labelledby="example-name-label">
-        </mat-slider>
-<!--      </mat-form-field>-->
-
-      <mat-form-field appearance="fill">
-        <mat-label>Risk</mat-label>
-        <mat-select [formControlName]="keys.Risk">
-          <mat-option *ngFor="let index of [-4, -3, -2, -1, 0, 1, 2, 3, 4]" [value]="index">
-            {{index}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
 
       <mat-form-field appearance="fill">
         <mat-label>Coin</mat-label>
         <input matInput [formControlName]="keys.Coin">
       </mat-form-field>
 
+      <mat-radio-group class="mat-form-field-wrapper" aria-label="Select an option" [formControlName]="keys.Type">
+        <mat-radio-button [value]="tradeType.Cross">Cross</mat-radio-button>
+        <mat-radio-button [value]="tradeType.Isolated">Isolated</mat-radio-button>
+      </mat-radio-group>
 
       <mat-form-field appearance="fill">
         <mat-label>Factor</mat-label>
         <input matInput [formControlName]="keys.Factor">
       </mat-form-field>
 
+      <mat-slider
+        class="example-margin"
+        [max]="4"
+        [min]="-4"
+        [step]="1"
+        [formControlName]="keys.RiskBox"
+        [thumbLabel]="true"
+        aria-labelledby="example-name-label">
+      </mat-slider>
+
+      <mat-form-field appearance="fill">
+        <mat-label>PNL</mat-label>
+        <input matInput [formControlName]="keys.Pnl">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>ROE</mat-label>
+        <input matInput [formControlName]="keys.Roe">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Size</mat-label>
+        <input matInput [formControlName]="keys.Size">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Margin</mat-label>
+        <input matInput [formControlName]="keys.Margin">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Risk</mat-label>
+        <input matInput [formControlName]="keys.Risk">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Entry price</mat-label>
+        <input matInput [formControlName]="keys.EntryPrice">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Last price</mat-label>
+        <input matInput [formControlName]="keys.LastPrice">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Liquid price</mat-label>
+        <input matInput [formControlName]="keys.LiquidPrice">
+      </mat-form-field>
     </form>
   </div>
   <div class="card">

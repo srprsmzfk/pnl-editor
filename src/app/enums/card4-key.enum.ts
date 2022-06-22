@@ -5,6 +5,7 @@ export enum Card4KeyEnum {
   Coin = 'coin',
   Type = 'type',
   Factor = 'factor',
+  RiskBox = 'risk-box',
   Pnl = 'pnl',
   Roe = 'roe',
   Size = 'size',

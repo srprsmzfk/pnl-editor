@@ -48,7 +48,7 @@ export class TotalPnlCardComponent implements OnInit, AfterViewInit, OnDestroy {
       )
       .subscribe(form => {
         this.resetBackground();
-        this.canvasService.drawNumber(`${form[Card1KeyEnum.Value]}%`, CARD1_CONFIG[Card1KeyEnum.Value]);
+        this.canvasService.drawText(`${form[Card1KeyEnum.Value]}%`, CARD1_CONFIG[Card1KeyEnum.Value]);
         this.canvasService.drawText(`${form[Card1KeyEnum.StartDate]} - ${form[Card1KeyEnum.EndDate]}`, CARD1_CONFIG[Card1KeyEnum.StartDate]);
         this.canvasService.drawText(`${form[Card1KeyEnum.Referral]}`, CARD1_CONFIG[Card1KeyEnum.Referral]);
         this.qr$.next(form[Card1KeyEnum.Referral]);

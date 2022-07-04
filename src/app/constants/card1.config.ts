@@ -40,3 +40,42 @@ export const CARD1_CONFIG = {
     y: 781,
   }
 }
+
+export const CARD1_CONFIG_EN = {
+  [Card1KeyEnum.Value]: {
+    x: 31,
+    y: 235,
+    font: FontEnum.PlexCondensed,
+    color: ColorEnum.Green,
+    size: '48px',
+    weight: 500
+  },
+  [Card1KeyEnum.StartDate]: {
+    x: 72,
+    y: 140,
+    font: FontEnum.Plex,
+    size: '12px',
+    color: ColorEnum.Grey,
+    weight: 400
+  },
+  [Card1KeyEnum.EndDate]: {
+    x: 3,
+    y: 140,
+    font: FontEnum.Plex,
+    size: '12px',
+    color: ColorEnum.Grey,
+    weight: 400
+  },
+  [Card1KeyEnum.Referral]: {
+    x: 141,
+    y: 418,
+    font: FontEnum.Plex,
+    size: '26px',
+    color: ColorEnum.White,
+    weight: 400
+  },
+  [Card1KeyEnum.Qr]: {
+    x: 35,
+    y: 355,
+  }
+}

@@ -3,16 +3,16 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { filter, map, Subject, takeUntil, tap } from 'rxjs';
 import { CanvasService } from '../../services/canvas.service';
 import { Card1KeyEnum } from '../../enums/card1-key.enum';
-import { CARD1_CONFIG } from '../../constants/card1.config';
+import { CARD1_CONFIG_EN } from '../../constants/card1.config';
 import { CLIENTS } from '../../constants/clients.const';
 import { BackgroundEnum } from '../../enums/background.enum';
 
 @Component({
-  selector: 'app-total-pnl-card',
-  templateUrl: './total-pnl-card.component.html',
-  styleUrls: ['./total-pnl-card.component.scss']
+  selector: 'app-total-pnl-card-en',
+  templateUrl: './total-pnl-card-en.component.html',
+  styleUrls: ['./total-pnl-card-en.component.scss']
 })
-export class TotalPnlCardComponent implements OnInit, AfterViewInit, OnDestroy {
+export class TotalPnlCardEnComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('mirror') imgRef: ElementRef;
   canvas: HTMLCanvasElement;
   form = new FormGroup({
@@ -23,7 +23,7 @@ export class TotalPnlCardComponent implements OnInit, AfterViewInit, OnDestroy {
   })
 
   img: HTMLImageElement;
-  imgSrc: any = BackgroundEnum.Card1Background1;
+  imgSrc: any = BackgroundEnum.Card1Background2;
   canvasBackground: any;
   KEYS = Card1KeyEnum;
   CLIENTS = CLIENTS;
@@ -48,9 +48,9 @@ export class TotalPnlCardComponent implements OnInit, AfterViewInit, OnDestroy {
       )
       .subscribe(form => {
         this.resetBackground();
-        this.canvasService.drawText(`${form[Card1KeyEnum.Value]}%`, CARD1_CONFIG[Card1KeyEnum.Value]);
-        this.canvasService.drawText(`${form[Card1KeyEnum.StartDate]} - ${form[Card1KeyEnum.EndDate]}`, CARD1_CONFIG[Card1KeyEnum.StartDate]);
-        this.canvasService.drawText(`${form[Card1KeyEnum.Referral]}`, CARD1_CONFIG[Card1KeyEnum.Referral]);
+        this.canvasService.drawText(`${form[Card1KeyEnum.Value]}%`, CARD1_CONFIG_EN[Card1KeyEnum.Value]);
+        this.canvasService.drawText(`${form[Card1KeyEnum.StartDate]} - ${form[Card1KeyEnum.EndDate]}`, CARD1_CONFIG_EN[Card1KeyEnum.StartDate]);
+        this.canvasService.drawText(`${form[Card1KeyEnum.Referral]}`, CARD1_CONFIG_EN[Card1KeyEnum.Referral]);
         this.qr$.next(form[Card1KeyEnum.Referral]);
       });
 
@@ -79,7 +79,7 @@ export class TotalPnlCardComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private setBackground(): void {
     this.canvasBackground = new Image();
-    this.canvasBackground.src = BackgroundEnum.Card1Background1;
+    this.canvasBackground.src = BackgroundEnum.Card1Background2;
     this.canvasBackground.onload = () => {
       this.canvas.width = this.canvasBackground.width;
       this.canvas.height = this.canvasBackground.height;
@@ -93,7 +93,7 @@ export class TotalPnlCardComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private setQr(): void {
     this.canvasService
-      .drawImage(this.qrImg, CARD1_CONFIG[Card1KeyEnum.Qr].x, CARD1_CONFIG[Card1KeyEnum.Qr].y, 160, 160);
+      .drawImage(this.qrImg, CARD1_CONFIG_EN[Card1KeyEnum.Qr].x, CARD1_CONFIG_EN[Card1KeyEnum.Qr].y, 89, 89);
     this.setImg();
   }
 

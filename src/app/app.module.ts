@@ -18,6 +18,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { ReferralCardEnComponent } from './components/referral-card-en/referral-card-en.component';
 import { OpenTradesComponent } from './components/open-trades/open-trades.component';
 import { MatSliderModule } from '@angular/material/slider';
+import { TotalPnlCardEnComponent } from './components/total-pnl-card-en/total-pnl-card-en.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MatSliderModule } from '@angular/material/slider';
     ReferralCardComponent,
     TotalPnlCardComponent,
     ReferralCardEnComponent,
-    OpenTradesComponent
+    OpenTradesComponent,
+    TotalPnlCardEnComponent
   ],
     imports: [
         BrowserModule,

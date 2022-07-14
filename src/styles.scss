@@ -75,3 +75,29 @@ mat-radio-group {
   }
 }
 
+#coinmarketcap-widget-marquee {
+  width: 35%;
+
+  .coin-marquee-header {
+    display: none;
+  }
+
+  .coin-marquee-container__inner {
+    animation-duration: 20s !important;
+  }
+
+  .coin-marquee-container {
+    width: 100% !important;
+  }
+
+  .coin-marquee-item {
+    min-width: 180px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  #coinmarketcap-widget-marquee {
+    width: 200px;
+  }
+}
+

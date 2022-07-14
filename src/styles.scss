@@ -93,6 +93,10 @@ mat-radio-group {
   .coin-marquee-item {
     min-width: 180px;
   }
+
+  .coin-marquee-wrapper {
+    border: none;
+  }
 }
 
 @media only screen and (max-width: 700px) {

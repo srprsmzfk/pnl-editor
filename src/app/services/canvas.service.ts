@@ -8,6 +8,7 @@ import { CARD3_CONFIG } from '../constants/card3.config';
 import { Card3KeyEnum } from '../enums/card3-key.enum';
 import { Card4KeyEnum } from '../enums/card4-key.enum';
 import { CARD4_CONFIG } from '../constants/card4.config';
+import { CARD4_CONFIG_BLACK } from '../constants/card4black.config';
 
 @Injectable({
   providedIn: 'root'
@@ -96,27 +97,29 @@ export class CanvasService {
     this.drawText(coin, {...CARD3_CONFIG[Card3KeyEnum.Coin], x: caret.x});
   }
 
-  drawOpenTradesLine(sell: SellEnum, coin: string, type: string, factor: string, risk: number) {
+  drawOpenTradesLine(sell: SellEnum, coin: string, type: string, factor: string, risk: number, isDefaultColor: boolean = true) {
+    let config = isDefaultColor ? CARD4_CONFIG : CARD4_CONFIG_BLACK;
+
     this.drawRect(
-      CARD4_CONFIG[Card4KeyEnum.SellBox].x,
-      CARD4_CONFIG[Card4KeyEnum.SellBox].y,
+      config[Card4KeyEnum.SellBox].x,
+      config[Card4KeyEnum.SellBox].y,
       42,
       42,
       sell === SellEnum.Short ? ColorEnum.Red : ColorEnum.Green);
-    this.drawText(sell === SellEnum.Short ? 'П' : 'K', CARD4_CONFIG[Card4KeyEnum.Sell]);
+    this.drawText(sell === SellEnum.Short ? 'П' : 'K', config[Card4KeyEnum.Sell]);
     let caret = {
-      x: CARD4_CONFIG[Card4KeyEnum.Coin].x,
-      y: CARD4_CONFIG[Card3KeyEnum.Coin].y
+      x: config[Card4KeyEnum.Coin].x,
+      y: config[Card3KeyEnum.Coin].y
     }
     let space = 30;
 
-    this.drawText(coin, CARD4_CONFIG[Card4KeyEnum.Coin]);
+    this.drawText(coin, config[Card4KeyEnum.Coin]);
     caret.x += this.measureText(coin) + space;
-    this.drawText(type, {...CARD4_CONFIG[Card4KeyEnum.Type], x: caret.x});
+    this.drawText(type, {...config[Card4KeyEnum.Type], x: caret.x});
     caret.x += this.measureText(type) + 10;
-    this.drawText(factor, {...CARD4_CONFIG[Card4KeyEnum.Factor], x: caret.x});
+    this.drawText(factor, {...config[Card4KeyEnum.Factor], x: caret.x});
     caret.x += this.measureText(factor) + space;
-    this.drawRisk(caret.x, CARD4_CONFIG[Card4KeyEnum.RiskBox].y, risk);
+    this.drawRisk(caret.x, config[Card4KeyEnum.RiskBox].y, risk);
   }
 
   private measureText(text): number {

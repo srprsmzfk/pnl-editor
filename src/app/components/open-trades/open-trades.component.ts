@@ -7,6 +7,7 @@ import { CanvasService } from '../../services/canvas.service';
 import { Card4KeyEnum } from '../../enums/card4-key.enum';
 import { TradeType } from '../../enums/trade-type.enum';
 import { CARD4_CONFIG } from '../../constants/card4.config';
+import { CARD4_CONFIG_BLACK } from '../../constants/card4black.config';
 
 @Component({
   selector: 'app-open-trades',
@@ -30,12 +31,25 @@ export class OpenTradesComponent implements OnInit, AfterViewInit {
     [Card4KeyEnum.EntryPrice]: new FormControl(''),
     [Card4KeyEnum.LastPrice]: new FormControl(''),
     [Card4KeyEnum.LiquidPrice]: new FormControl(''),
+    [Card4KeyEnum.Background]: new FormControl(BackgroundEnum.Card4Background1),
   })
+
+  config = CARD4_CONFIG;
 
   imgSrc: any = BackgroundEnum.Card4Background1;
   keys = Card4KeyEnum;
   sell = SellEnum;
   tradeType = TradeType;
+  backgrounds = [
+    {
+      label: 'Background 1',
+      value: BackgroundEnum.Card4Background1,
+    },
+    {
+      label: 'Background 2',
+      value: BackgroundEnum.Card4Background2,
+    }
+  ]
 
   private canvasBackgroundImg = new Image();
   private shareIcon = new Image();
@@ -52,15 +66,21 @@ export class OpenTradesComponent implements OnInit, AfterViewInit {
       this.canvas.height = this.canvasBackgroundImg.height;
       this.resetBackground();
       this.drawForm();
+      this.setImg();
     }
     this.form.valueChanges
       .pipe(
         takeUntil(this.destroy$),
       )
       .subscribe(form => {
-        this.resetBackground();
-        this.drawForm();
-        this.setImg();
+        if (form[Card4KeyEnum.Background] === this.canvasBackgroundImg.src) {
+          this.resetBackground();
+          this.drawForm();
+          this.setImg();
+        } else {
+          this.config = form[Card4KeyEnum.Background] === BackgroundEnum.Card4Background1 ? CARD4_CONFIG : CARD4_CONFIG_BLACK;
+          this.canvasBackgroundImg.src = form[Card4KeyEnum.Background];
+        }
       });
   }
 
@@ -90,15 +110,16 @@ export class OpenTradesComponent implements OnInit, AfterViewInit {
       form[Card4KeyEnum.Type] === TradeType.Cross ? 'Кросс' : 'Изолированый',
       `${form[Card4KeyEnum.Factor]}X`,
       form[Card4KeyEnum.RiskBox],
+      this.config === CARD4_CONFIG,
     );
     this.canvasService.drawImage(this.shareIcon, 904, 22);
-    this.canvasService.drawNumber(form[Card4KeyEnum.Pnl], CARD4_CONFIG[Card4KeyEnum.Pnl]);
-    this.canvasService.drawNumber(`${form[Card4KeyEnum.Roe]} %`, CARD4_CONFIG[Card4KeyEnum.Roe]);
-    this.canvasService.drawText(form[Card4KeyEnum.Size], CARD4_CONFIG[Card4KeyEnum.Size]);
-    this.canvasService.drawText(form[Card4KeyEnum.Margin], CARD4_CONFIG[Card4KeyEnum.Margin]);
-    this.canvasService.drawNumber(`${form[Card4KeyEnum.Risk]} %`, CARD4_CONFIG[Card4KeyEnum.Risk]);
-    this.canvasService.drawText(form[Card4KeyEnum.EntryPrice], CARD4_CONFIG[Card4KeyEnum.EntryPrice]);
-    this.canvasService.drawText(form[Card4KeyEnum.LastPrice], CARD4_CONFIG[Card4KeyEnum.LastPrice]);
-    this.canvasService.drawText(form[Card4KeyEnum.LiquidPrice], CARD4_CONFIG[Card4KeyEnum.LiquidPrice]);
+    this.canvasService.drawNumber(form[Card4KeyEnum.Pnl], this.config[Card4KeyEnum.Pnl]);
+    this.canvasService.drawNumber(`${form[Card4KeyEnum.Roe]} %`, this.config[Card4KeyEnum.Roe]);
+    this.canvasService.drawText(form[Card4KeyEnum.Size], this.config[Card4KeyEnum.Size]);
+    this.canvasService.drawText(form[Card4KeyEnum.Margin], this.config[Card4KeyEnum.Margin]);
+    this.canvasService.drawNumber(`${form[Card4KeyEnum.Risk]} %`, this.config[Card4KeyEnum.Risk]);
+    this.canvasService.drawText(form[Card4KeyEnum.EntryPrice], this.config[Card4KeyEnum.EntryPrice]);
+    this.canvasService.drawText(form[Card4KeyEnum.LastPrice], this.config[Card4KeyEnum.LastPrice]);
+    this.canvasService.drawText(form[Card4KeyEnum.LiquidPrice], this.config[Card4KeyEnum.LiquidPrice]);
   }
 }

@@ -1,6 +1,16 @@
 <div class="container">
   <div class="form">
     <form [formGroup]="form">
+      <mat-form-field appearance="fill">
+        <mat-label>Background</mat-label>
+        <mat-select [formControlName]="keys.Background">
+          <mat-option class="img-option" *ngFor="let bg of backgrounds" [value]="bg.value">
+            <img [src]="bg.value">
+            <span class="label">{{bg.label}}</span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
       <mat-radio-group class="mat-form-field-wrapper" aria-label="Select an option" [formControlName]="keys.Sell">
         <mat-radio-button [value]="sell.Short">Short</mat-radio-button>
         <mat-radio-button [value]="sell.Long">Long</mat-radio-button>

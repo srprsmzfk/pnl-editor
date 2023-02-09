@@ -9,6 +9,9 @@ import { Card3KeyEnum } from '../enums/card3-key.enum';
 import { Card4KeyEnum } from '../enums/card4-key.enum';
 import { CARD4_CONFIG } from '../constants/card4.config';
 import { CARD4_CONFIG_BLACK } from '../constants/card4black.config';
+import { CARD5_CONFIG } from '../constants/card5.config';
+import { CARD5_CONFIG_BLACK } from '../constants/card5black.config';
+import { Card5KeyEnum } from '../enums/card5-key.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -120,6 +123,31 @@ export class CanvasService {
     this.drawText(factor, {...config[Card4KeyEnum.Factor], x: caret.x});
     caret.x += this.measureText(factor) + space;
     this.drawRisk(caret.x, config[Card4KeyEnum.RiskBox].y, risk);
+  }
+
+  drawOpenTradesEnLine(sell: SellEnum, coin: string, type: string, factor: string, risk: number, isDefaultColor: boolean = true) {
+    let config = isDefaultColor ? CARD5_CONFIG : CARD5_CONFIG_BLACK;
+
+    this.drawRect(
+      config[Card5KeyEnum.SellBox].x,
+      config[Card5KeyEnum.SellBox].y,
+      42,
+      42,
+      sell === SellEnum.Short ? ColorEnum.Red : ColorEnum.Green);
+    this.drawText(sell === SellEnum.Short ? 'S' : 'B', config[Card5KeyEnum.Sell]);
+    let caret = {
+      x: config[Card5KeyEnum.Coin].x,
+      y: config[Card5KeyEnum.Coin].y
+    }
+    let space = 30;
+
+    this.drawText(coin, config[Card5KeyEnum.Coin]);
+    caret.x += this.measureText(coin) + space;
+    this.drawText(type, {...config[Card5KeyEnum.Type], x: caret.x});
+    caret.x += this.measureText(type) + 10;
+    this.drawText(factor, {...config[Card5KeyEnum.Factor], x: caret.x});
+    caret.x += this.measureText(factor) + space;
+    this.drawRisk(caret.x, config[Card5KeyEnum.RiskBox].y, risk);
   }
 
   private measureText(text): number {

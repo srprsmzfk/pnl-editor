@@ -6,16 +6,12 @@ import { ReferralCardComponent } from './components/referral-card/referral-card.
 import { ReferralCardEnComponent } from './components/referral-card-en/referral-card-en.component';
 import { OpenTradesComponent } from './components/open-trades/open-trades.component';
 import { TotalPnlCardEnComponent } from './components/total-pnl-card-en/total-pnl-card-en.component';
+import { OpenTradesEnComponent } from './components/open-trades-en/open-trades-en.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'menu',
-    pathMatch: 'full',
-  },
-  {
-    path: 'menu',
-    component: MenuComponent,
+    component: MenuComponent
   },
   {
     path: 'card1',
@@ -32,6 +28,10 @@ const routes: Routes = [
   {
     path: 'card4',
     component: OpenTradesComponent
+  },
+  {
+    path: 'card5',
+    component: OpenTradesEnComponent
   },
   {
     path: 'card5',

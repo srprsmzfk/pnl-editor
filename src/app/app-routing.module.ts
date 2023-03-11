@@ -30,7 +30,7 @@ const routes: Routes = [
     component: OpenTradesComponent
   },
   {
-    path: 'card5',
+    path: 'card6',
     component: OpenTradesEnComponent
   },
   {

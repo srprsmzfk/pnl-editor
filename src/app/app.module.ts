@@ -20,6 +20,7 @@ import { OpenTradesComponent } from './components/open-trades/open-trades.compon
 import { MatSliderModule } from '@angular/material/slider';
 import { TotalPnlCardEnComponent } from './components/total-pnl-card-en/total-pnl-card-en.component';
 import { OpenTradesEnComponent } from './components/open-trades-en/open-trades-en.component';
+import { AccountComponent } from './components/account/account.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { OpenTradesEnComponent } from './components/open-trades-en/open-trades-e
     ReferralCardEnComponent,
     OpenTradesComponent,
     OpenTradesEnComponent,
-    TotalPnlCardEnComponent
+    TotalPnlCardEnComponent,
+    AccountComponent
   ],
     imports: [
         BrowserModule,

@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="form">
+    <form [formGroup]="form">
+      <mat-form-field appearance="fill">
+        <mat-label>Background</mat-label>
+        <mat-select [formControlName]="keys.Background">
+          <mat-option class="img-option" *ngFor="let bg of backgrounds" [value]="bg.value">
+            <img [src]="bg.value">
+            <span class="label">{{bg.label}}</span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Balance</mat-label>
+        <input matInput [formControlName]="keys.Balance">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Margin</mat-label>
+        <input matInput [formControlName]="keys.Margin">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Wallet</mat-label>
+        <input matInput [formControlName]="keys.Wallet">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Pnl</mat-label>
+        <input matInput [formControlName]="keys.Pnl">
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="card">
+    <img #mirror class="mirror" [src]="imgSrc"/>
+  </div>
+</div>

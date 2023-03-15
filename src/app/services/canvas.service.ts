@@ -12,6 +12,9 @@ import { CARD4_CONFIG_BLACK } from '../constants/card4black.config';
 import { CARD5_CONFIG } from '../constants/card5.config';
 import { CARD5_CONFIG_BLACK } from '../constants/card5black.config';
 import { Card5KeyEnum } from '../enums/card5-key.enum';
+import { CARD6_CONFIG } from '../constants/card6.config';
+import { CARD6_CONFIG_BLACK } from '../constants/card6black.config';
+import { Card6KeyEnum } from '../enums/card6-key.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -148,6 +151,16 @@ export class CanvasService {
     this.drawText(factor, {...config[Card5KeyEnum.Factor], x: caret.x});
     caret.x += this.measureText(factor) + space;
     this.drawRisk(caret.x, config[Card5KeyEnum.RiskBox].y, risk);
+  }
+
+  drawAccountLine(value: string, isDefaultColor: boolean = true) {
+    let config = isDefaultColor ? CARD6_CONFIG : CARD6_CONFIG_BLACK;
+    let balance = `${value} USD`
+
+    this.drawText(balance, config[Card6KeyEnum.Balance]);
+    this.drawText(
+      ` ≈ $${(+value).toFixed(2)}`,
+      {...config[Card6KeyEnum.Balance], x: config[Card6KeyEnum.Balance].x + this.measureText(balance), color: ColorEnum.LightGrey});
   }
 
   private measureText(text): number {

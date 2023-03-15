@@ -7,6 +7,7 @@ import { ReferralCardEnComponent } from './components/referral-card-en/referral-
 import { OpenTradesComponent } from './components/open-trades/open-trades.component';
 import { TotalPnlCardEnComponent } from './components/total-pnl-card-en/total-pnl-card-en.component';
 import { OpenTradesEnComponent } from './components/open-trades-en/open-trades-en.component';
+import { AccountComponent } from './components/account/account.component';
 
 const routes: Routes = [
   {
@@ -30,12 +31,16 @@ const routes: Routes = [
     component: OpenTradesComponent
   },
   {
-    path: 'card5',
+    path: 'card6',
     component: OpenTradesEnComponent
   },
   {
     path: 'card5',
     component: TotalPnlCardEnComponent
+  },
+  {
+    path: 'card7',
+    component: AccountComponent
   }
 ];
 

@@ -10,4 +10,6 @@ export enum BackgroundEnum {
   Card4Background2 = 'assets/img/card4Background2.png',
   Card5Background1 = 'assets/img/card5Background1.png',
   Card5Background2 = 'assets/img/card5Background2.png',
+  Card6Background1 = 'assets/img/card6Background1.png',
+  Card6Background2 = 'assets/img/card6Background2.png',
 }

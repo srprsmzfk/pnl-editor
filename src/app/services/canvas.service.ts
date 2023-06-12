@@ -53,6 +53,7 @@ export class CanvasService {
     config.color = +(number
       .replace(',', '.')
       .replace('%', '')
+      .replace(/\s+/g, '')
       // .replace('+', '')
       .trim()) >= 0 ?
       ColorEnum.Green : ColorEnum.Red

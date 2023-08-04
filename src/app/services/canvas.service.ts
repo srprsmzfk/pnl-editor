@@ -22,7 +22,7 @@ import { Card6KeyEnum } from '../enums/card6-key.enum';
 export class CanvasService {
   context: CanvasRenderingContext2D;
 
-  private canvas: HTMLCanvasElement
+  protected canvas: HTMLCanvasElement
 
   constructor() { }
 
@@ -164,17 +164,17 @@ export class CanvasService {
       {...config[Card6KeyEnum.Balance], x: config[Card6KeyEnum.Balance].x + this.measureText(balance), color: ColorEnum.LightGrey});
   }
 
-  private measureText(text): number {
+  protected measureText(text): number {
     return this.context.measureText(text).width;
   }
 
-  private drawRect(x: number, y: number, w: number, h: number, color: ColorEnum | string): void {
+  protected drawRect(x: number, y: number, w: number, h: number, color: ColorEnum | string): void {
     console.log(x, y);
     this.context.fillStyle = color
     this.context.fillRect(x, y, w, h);
   }
 
-  private drawRisk(x: number, y: number, risk: number) {
+  protected drawRisk(x: number, y: number, risk: number) {
     const color = risk < 0 ? ColorEnum.Red : ColorEnum.Green;
     risk = Math.abs(risk);
     for (let i = 1; i < 5; i++) {

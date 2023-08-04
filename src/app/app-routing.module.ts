@@ -8,6 +8,7 @@ import { OpenTradesComponent } from './components/open-trades/open-trades.compon
 import { TotalPnlCardEnComponent } from './components/total-pnl-card-en/total-pnl-card-en.component';
 import { OpenTradesEnComponent } from './components/open-trades-en/open-trades-en.component';
 import { AccountComponent } from './components/account/account.component';
+import { OpenTradesTpslComponent } from './components/open-trades-tpsl/open-trades-tpsl.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: 'card7',
     component: AccountComponent
+  },
+  {
+    path: 'card8',
+    component: OpenTradesTpslComponent
   }
 ];
 

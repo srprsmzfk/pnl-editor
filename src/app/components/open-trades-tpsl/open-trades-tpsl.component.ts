@@ -125,7 +125,7 @@ export class OpenTradesTpslComponent implements OnInit, AfterViewInit {
       );
     } else {
       this.canvasService.drawOpenTradesHeader(
-        form[Card7KeyEnum.Sell] === SellEnum.Short ? 'К' : 'П',
+        form[Card7KeyEnum.Sell] === SellEnum.Short ? 'П' : 'К',
         form[Card7KeyEnum.Sell] === SellEnum.Short ? ColorEnum.Red : ColorEnum.Green,
         `${form[Card7KeyEnum.Coin].toUpperCase()} Бессрочный`,
         form[Card7KeyEnum.Type] === TradeType.Cross ? 'Кросс' : 'Изолированый',

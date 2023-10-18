@@ -1,0 +1,16 @@
+export enum Card8KeyEnum {
+  Lang = 'lang',
+  Sell = 'sell',
+  SellBox = 'sell-box',
+  Coin = 'coin',
+  Type = 'type',
+  Factor = 'factor',
+  Pnl = 'pnl',
+  Size = 'size',
+  SizeTitle = 'size-title',
+  Margin = 'margin',
+  MarginRatio = 'margin-ratio',
+  AvgPrice = 'avg-price',
+  FairPrice = 'fair-price',
+  LiquidPrice = 'liquid-price',
+}

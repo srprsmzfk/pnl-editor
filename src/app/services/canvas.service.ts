@@ -50,13 +50,8 @@ export class CanvasService {
 
   drawNumber(number: string, config: TextInterface): void {
     config = {...config};
-    config.color = +(number
-      .replace(',', '.')
-      .replace('%', '')
-      .replace(/\s+/g, '')
-      // .replace('+', '')
-      .trim()) >= 0 ?
-      ColorEnum.Green : ColorEnum.Red
+    config.color = number.includes('-') ?
+      ColorEnum.Red : ColorEnum.Green
     this.drawText(number, config);
   }
 

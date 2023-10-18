@@ -7,5 +7,5 @@ export interface TextInterface {
   font?: FontEnum,
   weight?: number,
   size?: string,
-  color?: ColorEnum
+  color?: ColorEnum | string
 }

@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="form">
+    <form [formGroup]="form">
+      <mat-radio-group class="mat-form-field-wrapper" aria-label="Select an option" [formControlName]="keys.Lang">
+        <mat-radio-button [value]="CardLanguage.En">EN</mat-radio-button>
+        <mat-radio-button [value]="CardLanguage.Ru">RU</mat-radio-button>
+      </mat-radio-group>
+
+      <mat-radio-group class="mat-form-field-wrapper" aria-label="Select an option" [formControlName]="keys.Sell">
+        <mat-radio-button [value]="sell.Short">Short</mat-radio-button>
+        <mat-radio-button [value]="sell.Long">Long</mat-radio-button>
+      </mat-radio-group>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Coin</mat-label>
+        <input matInput [formControlName]="keys.Coin">
+      </mat-form-field>
+
+      <mat-radio-group class="mat-form-field-wrapper" aria-label="Select an option" [formControlName]="keys.Type">
+        <mat-radio-button [value]="tradeType.Cross">Cross</mat-radio-button>
+        <mat-radio-button [value]="tradeType.Isolated">Isolated</mat-radio-button>
+      </mat-radio-group>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Factor</mat-label>
+        <input matInput [formControlName]="keys.Factor">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>PNL</mat-label>
+        <input matInput [formControlName]="keys.Pnl">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Size</mat-label>
+        <input matInput [formControlName]="keys.Size">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Margin</mat-label>
+        <input matInput [formControlName]="keys.Margin">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Margin Ratio</mat-label>
+        <input matInput [formControlName]="keys.MarginRatio">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Avg Price</mat-label>
+        <input matInput [formControlName]="keys.AvgPrice">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Fair Price</mat-label>
+        <input matInput [formControlName]="keys.FairPrice">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Liquid price</mat-label>
+        <input matInput [formControlName]="keys.LiquidPrice">
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="card">
+    <img #mirror class="mirror" [src]="imgSrc"/>
+  </div>
+</div>

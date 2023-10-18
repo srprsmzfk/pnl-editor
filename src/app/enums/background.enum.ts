@@ -16,4 +16,6 @@ export enum BackgroundEnum {
   TpslEnWhite = 'assets/img/tpslEnWhite.png',
   TpslRuBlack = 'assets/img/tpslRuBlack.png',
   TpslEnBlack = 'assets/img/tpslEnBlack.png',
+  MexcCard1RuBlack = 'assets/img/mexc1-black-ru-blank.png',
+  MexcCard1EnBlack = 'assets/img/mexc1-black-en-blank.png',
 }

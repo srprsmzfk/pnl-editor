@@ -24,6 +24,7 @@ export class MexcOpenTradesComponent implements OnInit, AfterViewInit {
     [CardLanguage.En]: BackgroundEnum.MexcCard1EnBlack
   }
   form = new FormGroup({
+    [Card8KeyEnum.Share]: new FormControl(false),
     [Card8KeyEnum.Sell]: new FormControl(SellEnum.Short),
     [Card8KeyEnum.Coin]: new FormControl(''),
     [Card8KeyEnum.Type]: new FormControl(TradeType.Cross),
@@ -46,11 +47,19 @@ export class MexcOpenTradesComponent implements OnInit, AfterViewInit {
 
   private canvasBackgroundImg = new Image();
   private lang = CardLanguage.En;
-  private destroy$ = new Subject<void>()
+  private destroy$ = new Subject<void>();
+  private shareIcon = new Image();
+  private shareIcons = [];
 
   constructor(
     private canvasService: MexcOpenTradesCanvasService
-  ) {}
+  ) {
+    for (let i = 1; i < 6; i++) {
+      let img = new Image();
+      img.src = `assets/icons/mexc-share-icon${i}.svg`;
+      this.shareIcons.push(img);
+    }
+  }
 
   ngOnInit(): void {
     this.canvasBackgroundImg.onload = () => {
@@ -59,7 +68,12 @@ export class MexcOpenTradesComponent implements OnInit, AfterViewInit {
       this.resetBackground();
       this.drawForm();
       this.setImg();
-    }
+    };
+    this.form.get(Card8KeyEnum.Share).valueChanges.subscribe(v => {
+      if (v) {
+        this.shareIcon = this.shareIcons[Math.floor(Math.random() * 4)];
+      }
+    });
     this.form.valueChanges
       .pipe(
         takeUntil(this.destroy$),
@@ -118,6 +132,9 @@ export class MexcOpenTradesComponent implements OnInit, AfterViewInit {
       );
     }
     this.canvasService.drawNumber(form[Card8KeyEnum.Pnl], this.config[Card8KeyEnum.Pnl]);
+    if (form[Card8KeyEnum.Share]) {
+      this.canvasService.drawImage(this.shareIcon, 1173, 40, 67, 67);
+    }
     this.canvasService.drawText(`${form[Card8KeyEnum.Lang] === CardLanguage.En ? 'Size' : 'Позиция'}(${form[Card8KeyEnum.Coin].toUpperCase().split(' ')[0]})`, this.config[Card8KeyEnum.SizeTitle]);
     this.canvasService.drawText(form[Card8KeyEnum.Size], this.config[Card8KeyEnum.Size]);
     this.canvasService.drawText(form[Card8KeyEnum.Margin], this.config[Card8KeyEnum.Margin]);

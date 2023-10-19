@@ -11,6 +11,11 @@
         <mat-radio-button [value]="sell.Long">Long</mat-radio-button>
       </mat-radio-group>
 
+      <mat-radio-group class="mat-form-field-wrapper" aria-label="Select an option" [formControlName]="keys.Share">
+        <mat-radio-button [value]="true">Shine</mat-radio-button>
+        <mat-radio-button [value]="false">Grey</mat-radio-button>
+      </mat-radio-group>
+
       <mat-form-field appearance="fill">
         <mat-label>Coin</mat-label>
         <input matInput [formControlName]="keys.Coin">

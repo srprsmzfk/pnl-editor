@@ -1,4 +1,5 @@
 export enum Card8KeyEnum {
+  Share = 'share',
   Lang = 'lang',
   Sell = 'sell',
   SellBox = 'sell-box',

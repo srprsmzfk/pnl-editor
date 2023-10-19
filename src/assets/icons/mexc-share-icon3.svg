@@ -1,0 +1,26 @@
+<svg width="211px" height="211px" viewBox="-2.4 -2.4 28.80 28.80" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#00000">
+
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:rgb(217,131,58);stop-opacity:1" />
+      <stop offset="20%" style="stop-color:rgb(251,232,138);stop-opacity:1" />
+      <stop offset="100%" style="stop-color:rgb(217,131,58);stop-opacity:1" />
+    </linearGradient>
+
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="40%" style="stop-color:rgb(217,131,58);stop-opacity:1" />
+      <stop offset="80%" style="stop-color:rgb(251,232,138);stop-opacity:1" />
+      <stop offset="100%" style="stop-color:rgb(217,131,58);stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+<!--  <g id="SVGRepo_bgCarrier" stroke-width="2"/>-->
+
+<!--  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>-->
+
+  <g id="SVGRepo_iconCarrier" stroke="#000000">
+    <path d="M13 11L22 2M22 2H16.6562M22 2V7.34375" stroke="url(#grad1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12" stroke="url(#grad2)" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+</svg>

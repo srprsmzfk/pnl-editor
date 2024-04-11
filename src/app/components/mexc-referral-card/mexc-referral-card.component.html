@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="form">
+    <form [formGroup]="form">
+      <mat-form-field appearance="fill">
+        <mat-label>Background</mat-label>
+        <mat-select [formControlName]="key.Background">
+          <mat-option class="img-option" *ngFor="let bg of backgrounds" [value]="bg.label">
+            <img [src]="bg.value">
+            <span class="label">{{bg.label}}</span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-radio-group class="mat-form-field-wrapper" aria-label="Select an option" [formControlName]="key.Lang">
+        <mat-radio-button [value]="cardLanguage.En">EN</mat-radio-button>
+        <mat-radio-button [value]="cardLanguage.Ru">RU</mat-radio-button>
+      </mat-radio-group>
+
+      <mat-radio-group class="mat-form-field-wrapper" aria-label="Select an option" [formControlName]="key.Sell">
+        <mat-radio-button [value]="sell.ShortEn">Short</mat-radio-button>
+        <mat-radio-button [value]="sell.LongEn">Long</mat-radio-button>
+      </mat-radio-group>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Coin</mat-label>
+        <input matInput [formControlName]="key.Coin">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Factor</mat-label>
+        <input matInput [formControlName]="key.Factor">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>PNL</mat-label>
+        <input matInput [formControlName]="key.Pnl">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>PNL2</mat-label>
+        <input matInput [formControlName]="key.Pnl2">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Fair Price</mat-label>
+        <input matInput [formControlName]="key.FairPrice">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Entry Price</mat-label>
+        <input matInput [formControlName]="key.EntryPrice">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Time</mat-label>
+        <input matInput [formControlName]="key.Time">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Client</mat-label>
+        <mat-select [formControlName]="key.Referral">
+          <mat-option *ngFor="let client of referals" [value]="client.id">
+            {{client.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="card">
+    <img #mirror class="mirror" [src]="imgSrc"/>
+  </div>
+</div>

@@ -23,6 +23,7 @@ import { OpenTradesEnComponent } from './components/open-trades-en/open-trades-e
 import { AccountComponent } from './components/account/account.component';
 import { OpenTradesTpslComponent } from './components/open-trades-tpsl/open-trades-tpsl.component';
 import { MexcOpenTradesComponent } from './components/mexc-open-trades/mexc-open-trades.component';
+import { MexcReferralCardComponent } from './components/mexc-referral-card/mexc-referral-card.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { MexcOpenTradesComponent } from './components/mexc-open-trades/mexc-open
     AccountComponent,
     OpenTradesTpslComponent,
     MexcOpenTradesComponent,
+    MexcReferralCardComponent,
   ],
     imports: [
         BrowserModule,

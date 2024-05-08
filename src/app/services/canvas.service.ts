@@ -174,8 +174,8 @@ export class CanvasService {
     risk = Math.abs(risk);
     for (let i = 1; i < 5; i++) {
       let fillColor = i <= risk ? color : ColorEnum.LightGreyOpenTrades;
-      this.drawRect(x, y, 5, 28, fillColor);
-      this.drawRect(x, y + 36, 5, 3, fillColor);
+      this.drawRect(x, y, 6, 27, fillColor);
+      this.drawRect(x, y + 30, 6, 6, fillColor);
       x += 10;
     }
   }

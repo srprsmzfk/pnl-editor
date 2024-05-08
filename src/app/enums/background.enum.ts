@@ -12,6 +12,16 @@ export enum BackgroundEnum {
   Card5Background2 = 'assets/img/card5Background2.png',
   Card6Background1 = 'assets/img/card6Background1.png',
   Card6Background2 = 'assets/img/card6Background2.png',
+
+  TradeRuWhite = 'assets/img/trade_ru_white.png',
+  TradeRuWhiteTpsl = 'assets/img/trade_ru_white_tpsl.png',
+  TradeRuBlack = 'assets/img/trade_ru_black.png',
+  TradeRuBlackTpsl = 'assets/img/trade_ru_black_tpsl.png',
+  TradeEnBlack = 'assets/img/trade_en_black.png',
+  TradeEnWhite = 'assets/img/trade_en_white.png',
+  TradeEnBlackTpsl = 'assets/img/trade_en_black_tpsl.png',
+  TradeEnWhiteTpsl = 'assets/img/trade_en_white_tpsl.png',
+
   TpslRuWhite = 'assets/img/tpslRuWhite.png',
   TpslEnWhite = 'assets/img/tpslEnWhite.png',
   TpslRuBlack = 'assets/img/tpslRuBlack.png',

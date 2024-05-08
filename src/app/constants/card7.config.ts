@@ -5,39 +5,39 @@ import { Card7KeyEnum } from '../enums/card7-key.enum';
 
 export const CARD7_CONFIG: Record<string, TextInterface> = {
   [Card7KeyEnum.SellBox]: {
-    x: 46,
-    y: 54,
+    x: 44,
+    y: 58,
   },
   [Card7KeyEnum.Sell]: {
-    x: 61,
-    y: 90,
+    x: 58,
+    y: 95,
     font: FontEnum.Plex,
     color: ColorEnum.White,
-    size: '30px',
+    size: '32px',
     weight: 400
   },
   [Card7KeyEnum.Coin]: {
-    x: 123,
-    y: 96,
+    x: 112,
+    y: 101,
     font: FontEnum.PlexCondensed,
-    size: '45px',
+    size: '50px',
     color: ColorEnum.Black,
     weight: 500
   },
   [Card7KeyEnum.Type]: {
     x: 430,
-    y: 96,
+    y: 90,
     font: FontEnum.Plex,
-    size: '30px',
-    color: ColorEnum.LightGreyOpenTrades,
+    size: '26px',
+    color: ColorEnum.Black,
     weight: 400
   },
   [Card7KeyEnum.Factor]: {
     x: 115,
-    y: 96,
+    y: 90,
     font: FontEnum.Plex,
-    size: '30px',
-    color: ColorEnum.LightGreyOpenTrades,
+    size: '26px',
+    color: ColorEnum.Black,
     weight: 400
   },
   [Card7KeyEnum.RiskBox]: {
@@ -46,7 +46,7 @@ export const CARD7_CONFIG: Record<string, TextInterface> = {
   },
   [Card7KeyEnum.Pnl]: {
     x: 42,
-    y: 261,
+    y: 259,
     font: FontEnum.PlexCondensed,
     size: '55px',
     color: ColorEnum.Green,
@@ -54,7 +54,7 @@ export const CARD7_CONFIG: Record<string, TextInterface> = {
   },
   [Card7KeyEnum.Roe]: {
     x: -42,
-    y: 261,
+    y: 259,
     font: FontEnum.PlexCondensed,
     size: '55px',
     color: ColorEnum.Green,
@@ -62,56 +62,56 @@ export const CARD7_CONFIG: Record<string, TextInterface> = {
   },
   [Card7KeyEnum.Size]: {
     x: 42,
-    y: 400,
+    y: 385,
     font: FontEnum.Plex,
-    size: '35px',
+    size: '37px',
     color: ColorEnum.Black,
     weight: 400
   },
   [Card7KeyEnum.Margin]: {
-    x: 445,
-    y: 400,
+    x: 451,
+    y: 385,
     font: FontEnum.Plex,
-    size: '35px',
+    size: '37px',
     color: ColorEnum.Black,
     weight: 400
   },
   [Card7KeyEnum.Risk]: {
     x: -42,
-    y: 400,
+    y: 385,
     font: FontEnum.Plex,
-    size: '35px',
+    size: '37px',
     weight: 400
   },
   [Card7KeyEnum.EntryPrice]: {
     x: 42,
-    y: 537,
+    y: 519,
     font: FontEnum.Plex,
-    size: '35px',
+    size: '37px',
     color: ColorEnum.Black,
     weight: 400
   },
   [Card7KeyEnum.LastPrice]: {
-    x: 444,
-    y: 537,
+    x: 451,
+    y: 519,
     font: FontEnum.Plex,
-    size: '35px',
+    size: '37px',
     color: ColorEnum.Black,
     weight: 400
   },
   [Card7KeyEnum.LiquidPrice]: {
     x: -42,
-    y: 537,
+    y: 519,
     font: FontEnum.Plex,
     color: ColorEnum.Black,
-    size: '35px',
+    size: '37px',
     weight: 400
   },
   [Card7KeyEnum.TpSl]: {
-    x: 168,
-    y: 617,
+    x: 170,
+    y: 597,
     font: FontEnum.Plex,
-    size: '35px',
+    size: '37px',
     color: ColorEnum.Black,
     weight: 400
   },

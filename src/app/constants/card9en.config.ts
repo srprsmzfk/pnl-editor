@@ -31,18 +31,18 @@ export const CARD9_CONFIG_EN: Record<string, TextInterface> = {
   [Card9KeyEnum.Pnl]: {
     x: 70,
     y: 600,
-    font: FontEnum.Plex,
-    size: '92px',
+    font: FontEnum.PlexCondensed,
+    size: '95px',
     color: ColorEnum.Green,
-    weight: 900
+    weight: 500
   },
   [Card9KeyEnum.Pnl2]: {
     x: 70,
     y: 707,
-    font: FontEnum.Plex,
+    font: FontEnum.PlexCondensed,
     size: '45px',
     color: ColorEnum.Green,
-    weight: 900
+    weight: 500,
   },
   [Card9KeyEnum.FairPrice]: {
     x: 320,
@@ -58,7 +58,7 @@ export const CARD9_CONFIG_EN: Record<string, TextInterface> = {
     font: FontEnum.PlexCondensed,
     color: ColorEnum.White,
     size: '40px',
-    weight: 900
+    weight: 500
   },
   [Card9KeyEnum.Time]: {
     x: 320,
